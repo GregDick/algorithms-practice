@@ -8,19 +8,23 @@ var answer = [];
 
 start.reduce(function(prev, curr, i){
   prev.push(curr);
+
   for(var x = prev.length-1; x > 0 ; x--){
 
-    $("answer").append(prev.toString());
-    iterations ++;
-    if(prev[x-1] > prev[x]){
-      var placeholder = prev[x];
-      prev[x]         = prev[x-1];
-      prev[x-1]       = placeholder;
-    } else if(prev[x-1] < prev[x]){
-      break;
-    }
-
+    (function(prev, x){
+      $("answer").append(prev.toString());
+      console.log(prev);
+      iterations ++;
+      if(prev[x-1] > prev[x]){
+        var placeholder = prev[x];
+        prev[x]         = prev[x-1];
+        prev[x-1]       = placeholder;
+      } else if(prev[x-1] < prev[x]){
+        return;
+      }
+    })(prev, x)
   }
+
   return prev;
 }, answer);
 
