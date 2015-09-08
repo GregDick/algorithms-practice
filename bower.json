@@ -1,0 +1,21 @@
+{
+  "name": "algorithms-practice",
+  "version": "1.0.0",
+  "homepage": "https://github.com/GregDick/algorithms-practice",
+  "authors": [
+    "Greg Dick <gregory.j.dick@vanderbilt.edu>"
+  ],
+  "main": "main.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "lodash": "~3.10.1"
+  }
+}
