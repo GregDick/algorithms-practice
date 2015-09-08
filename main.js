@@ -13,10 +13,13 @@ start.reduce(function(prev, curr, i){
     $("answer").append(prev.toString());
     iterations ++;
     if(prev[x-1] > prev[x]){
-      prev.splice(x-1, 2, prev[x], prev[x-1]);
+      var placeholder = prev[x];
+      prev[x]         = prev[x-1];
+      prev[x-1]       = placeholder;
     } else if(prev[x-1] < prev[x]){
       break;
     }
+
   }
   return prev;
 }, answer);
