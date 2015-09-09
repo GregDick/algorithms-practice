@@ -1,11 +1,11 @@
-var start = _.shuffle(_.range(20));
+var start = _.shuffle(_.range(30));
 $(".start").append(start.toString());
 
 var iterations = 0;
 var answer = [];
 
 //insertion sort
-function insertion (arr, answer) {
+function insertionSort (arr, answer) {
   arr.reduce(function(prev, curr, i){
     prev.push(curr);
     for(var x = prev.length-1; x > 0 ; x--){
@@ -28,7 +28,7 @@ function insertion (arr, answer) {
 }
 
 //bubble sort
-function bubbles (arr){
+function bubbleSort (arr){
   var count = 0;
   for (var i = 0; i < arr.length; i++) {
     if(arr[i] > arr[i+1]){
@@ -70,9 +70,57 @@ function selectionSort (arr){
   $(".answer").append('selection: ' + arr.toString());
 }
 
-// insertion(start, answer);
-// bubbles(start);
-selectionSort(start);
+//quick sort
+function quickSort (arr, lo, hi) {
+  if (lo < hi){
+    var p = partition(arr, lo, hi);
+    quickSort(arr, lo, p-1);
+    quickSort(arr, p+1, hi);
+  }
+}
+
+//partition operation
+function partition(arr, lo, hi){
+  //chose the last element as the pivot
+  var pivotIndex = hi;
+  var pivot = arr[pivotIndex];
+  //moving inwards from the beginning
+  //check for lower values and put them after the pivot
+  for(var i = lo; i < pivotIndex; i++){
+    if(arr[i] > pivot && pivotIndex - i > 1){
+      var displaced = arr[pivotIndex-1];
+      arr[pivotIndex] = arr[i];
+      arr[pivotIndex-1] = pivot;
+      arr[i] = displaced;
+      pivotIndex--;
+      i = lo - 1;
+      iterations++;
+    //if only two values remain,
+    //swap them and return the new value of pivot's index
+    }else if(arr[i] > pivot){
+      arr[pivotIndex] = arr[i];
+      arr[i] = pivot;
+      pivotIndex--;
+      iterations++;
+    }
+  }
+  return pivotIndex;
+}
+
+quickSort(start, 0, start.length-1);
+$(".answer").append('quickSort: ' + start.toString());
+// insertionSort(start, answer);
+// bubbleSort(start);
+// selectionSort(start);
 
 $(".iterations").append(iterations);
+
+
+
+
+
+
+
+
+
 
