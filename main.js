@@ -41,7 +41,7 @@ function bubbles (arr){
     iterations++;
   };
   if(count===0){
-    $(".answer").append('bubbles: ' + start.toString());
+    $(".answer").append('bubbles: ' + arr.toString());
     return arr;
   }else{
     return bubbles(arr);
@@ -51,13 +51,28 @@ function bubbles (arr){
 //selection sort
 function selectionSort (arr){
 
+  for (var i = 0; i < arr.length; i++) {
+    var min = arr[i];
+    var index = i;
+    for (var x = i+1; x < arr.length; x++) {
+      if(arr[x] < min){
+        min = arr[x];
+        index = x;
+        iterations++;
+      }
+      if(x===arr.length-1){
+        arr[index] = arr[i];
+        arr[i] = min;
+      }
+    };
+    console.log(arr);
+  };
+  $(".answer").append('selection: ' + arr.toString());
 }
 
-
-
 // insertion(start, answer);
-bubbles(start);
-
+// bubbles(start);
+selectionSort(start);
 
 $(".iterations").append(iterations);
 
